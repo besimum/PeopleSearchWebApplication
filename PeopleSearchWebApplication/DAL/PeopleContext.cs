@@ -25,12 +25,5 @@ namespace PeopleSearchWebApplication.DAL
             modelBuilder.Entity<Person>().ToTable("Person");
         }
 
-        /*
-         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-{
-    modelBuilder.Entity<Estate>().ToTable("Estate");
-}
-         */
-
     }
 }
