@@ -1,0 +1,89 @@
+﻿<head>
+    <style type="text/css">
+        #Text1 {
+            width: 266px;
+        }
+        #TextSearch {
+            width: 250px;
+        }
+    </style>
+</head>
+@model IEnumerable<PeopleSearchWebApplication.Models.Person>
+
+@{
+    ViewBag.Title = "Person";
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "searchResults",
+        Confirm = "Sure?",
+        InsertionMode = InsertionMode.Replace,
+        LoadingElementId = "divLoading"
+    };
+}
+
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<h3>The People Search Application</h3>
+
+
+@using (Ajax.BeginForm("SearchPeople", options))
+{
+    <div id="divLoading" style="color:red;width:200px;background-color:yellow;font-size:larger;display:none;position:absolute;">Loading ....</div>
+    <div>
+        @Html.TextBox("keyword")
+        <button type="submit">Search</button>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create") <br />
+</p>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Salutation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MiddleInitial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+    </tr>
+
+    @foreach (var item in ViewData.Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salutation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleInitial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+        </tr>
+    }
+
+</table>
+
